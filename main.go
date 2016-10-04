@@ -35,6 +35,11 @@ func main() {
 		text     := s.TokenText()
 		guess, _ := strconv.Atoi(text)
 
+		// If the user inputs the letter q, quit
+		if text == "q" {
+			os.Exit(0)
+		}
+
 		// Check that the inputted number is between 0 and 10
 		if guess > 10 || guess < 0 {
 			fmt.Println("Sorry, the magic number is between 0 and 10 (inclusive). Try again!")
@@ -45,7 +50,7 @@ func main() {
 				fmt.Println("You are correct! Congratulations!")
 				os.Exit(0)
 			} else {
-				fmt.Printf("You are incorrect! Feel free to try again!\n")
+				fmt.Printf("You are incorrect! Feel free to try again, or enter 'q' at any time give up!\n")
 			}
 		}
 	}
