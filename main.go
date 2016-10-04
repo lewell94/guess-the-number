@@ -7,6 +7,7 @@ import (
 	"os"
 	"text/scanner"
 	"strconv"
+	"regexp"
 )
 
 func main() {
@@ -31,27 +32,37 @@ func main() {
 		// Get the rune of the inputted text
 		token = s.Scan()
 
-		// Get the inputted text (as string), convert it to an int
-		text     := s.TokenText()
-		guess, _ := strconv.Atoi(text)
-
+		// Get the inputted text (as string)
+		text := s.TokenText()
+		
 		// If the user inputs the letter q, quit
 		if text == "q" {
 			os.Exit(0)
 		}
 
-		// Check that the inputted number is between 0 and 10
-		if guess > 10 || guess < 0 {
-			fmt.Println("Sorry, the magic number is between 0 and 10 (inclusive). Try again!")
-		} else {
+		// Check to see if the input only contains numbers
+		onlyNumbers, _ := regexp.MatchString("^[0-9]*$", text)
 
-			// Check to see whether the user has guessed correctly
-			if guess == magicNumber {
-				fmt.Println("You are correct! Congratulations!")
-				os.Exit(0)
+		if onlyNumbers {
+
+			// Convert input string to an int
+			guess, _ := strconv.Atoi(text)
+
+			// Check that the inputted number is between 0 and 10
+			if guess > 10 || guess < 0 {
+				fmt.Println("Sorry, the magic number is between 0 and 10 (inclusive). Try again!")
 			} else {
-				fmt.Printf("You are incorrect! Feel free to try again, or enter 'q' at any time give up!\n")
+
+				// Check to see whether the user has guessed correctly
+				if guess == magicNumber {
+					fmt.Println("You are correct! Congratulations!")
+					os.Exit(0)
+				} else {
+					fmt.Printf("You are incorrect! Feel free to try again, or enter 'q' at any time give up!\n")
+				}
 			}
+		} else {
+			fmt.Println("Sorry, the magic number is a number, and therefore does not contain any letters or punctuation! Try again!")
 		}
 	}
 }
