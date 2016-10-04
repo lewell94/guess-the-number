@@ -42,12 +42,11 @@ func main() {
 
 			// Check to see whether the user has guessed correctly
 			if guess == magicNumber {
-				fmt.Println("You are correct! Congratulations.")
+				fmt.Println("You are correct! Congratulations!")
+				os.Exit(0)
 			} else {
-				fmt.Printf("%s %d%s \n", "You are incorrect! The magic number was", magicNumber, ".")
+				fmt.Printf("You are incorrect! Feel free to try again!\n")
 			}
 		}
-
-		os.Exit(0)
 	}
 }
