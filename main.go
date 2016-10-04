@@ -50,6 +50,9 @@ func main() {
 	// Create a new reader, reading from stdin
 	reader         := bufio.NewReader(os.Stdin)
 
+	// Tell the user what they have to do
+	fmt.Println("Try and guess the magic number between 1 and 10...")
+
 	// Read the inputted string, stop reading at a newline
 	inputString, _ := reader.ReadString(10)
 
