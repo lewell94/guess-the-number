@@ -9,8 +9,6 @@ import (
 	"bufio"
 )
 
-//var nums = make([]uint8, 0)
-
 func generateRandom() int {
 
 	// Generate random int between 0 and 10 inclusive, using the Unix time in nanoseconds as the seed
