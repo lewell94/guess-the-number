@@ -45,20 +45,19 @@ func checkInput(input string, magicNumber int) int {
 func main() {
 
 	// Get the magic number
-	magicNumber := generateRandom()
+	magicNumber    := generateRandom()
 
 	// Create a new reader, reading from stdin
-	var reader = bufio.NewReader(os.Stdin)
+	reader         := bufio.NewReader(os.Stdin)
 
 	// Read the inputted string, stop reading at a newline
 	inputString, _ := reader.ReadString(10)
 
 	// Get length of inputted string
-	inputLength := len(inputString)
+	inputLength    := len(inputString)
 
-	// Check to see if input is valid - 
-	// that it contains only numbers, no letters or punctuation
-	valid := true
+	// Check to see if input is valid - that it contains only numbers, no letters or punctuation
+	valid          := true
 
 	// Loop through the inputted string, it there are any letters
 	// or punctuation set valid to false. Ignore the last byte by
@@ -66,9 +65,9 @@ func main() {
 	// 10, for the newline
 	for i := 0; i < inputLength-1; i++ {
 
-		// TO-DO: Check for -, as this would be used for negative numbers,
-		// therefore needs to show "magic number is between 0 and 10"
-		// message instead of "letters or punctuation" message
+		// TO-DO: Check for a hyphen, as this would be used for negative 
+		// numbers, therefore needs to show "magic number is between 0
+		// and 10" message instead of "no letters or punctuation" message
 
 		if inputString[i] < 48 || inputString[i] > 57 {
 			valid = false
@@ -77,7 +76,6 @@ func main() {
 
 	// If the user has inputted any non-numbers, tell them to try again
 	if !valid {
-
 		fmt.Println("Sorry, the magic number is a number, and therefore does not contain any letters or punctuation! Try again!")
 	} else {
 
@@ -90,7 +88,7 @@ func main() {
 		for i := 0; i < inputLength-1; i++ {
 
 			// Get the int from the byte of each character in the string
-			// (byte is given to use by inputString[i])
+			// (byte is given to us by inputString[i])
 			charAsInt := int(inputString[i] - '0')
 
 			// Convert the int to a string for appending the input
